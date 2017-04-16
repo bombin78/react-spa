@@ -1,7 +1,7 @@
 {
   "name": "react-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "study",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --hot",
@@ -10,7 +10,7 @@
     "lint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Vladilen Minin",
+  "author": "Alexander Bombin for lessons Vladilen Minin",
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.13.2",
@@ -33,6 +33,10 @@
   },
   "dependencies": {
     "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "react-dom": "^15.3.0",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.6.1",
+    "react-router-redux": "^4.0.5",
+    "redux": "^3.5.2"
   }
 }

@@ -4,6 +4,7 @@
 
 //Импортируем(подключаем) React
 import React from 'react';
+import { DevTools } from './utils/index';
 
 //Экспортируем по умолчанию компонент App,
 //который будет наследоватся от компонета React
@@ -17,7 +18,10 @@ export default class App extends React.Component {
 	//Метод render который будет возвращать <h1>Hello world!</h1>
 	render() {
 		return (
-			<h1>Hello world!</h1>
+			<div>
+				<h1>Hello world!</h1>
+				{ process.env.NODE_ENV !== 'production' ? <DevTools /> : null }
+			</div>
 		);
 	};
 

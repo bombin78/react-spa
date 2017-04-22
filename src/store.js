@@ -9,6 +9,7 @@
 //compose - позволит из rootReducer-ов создать store
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers';
+import { DevTools } from './utils/index';
 
 
 //Вспомогательная функция, добавляющая инструменты для store
@@ -30,7 +31,8 @@ function _applyMiddleware() {
 export default function configureStore(initialState) {
 	//В объект store положим результат выполнеия функции compose
 	const store = compose(
-		_applyMiddleware()
+		_applyMiddleware(),
+		DevTools.instrument()
 	)(createStore)(rootReducer,initialState);
 
 	return store;

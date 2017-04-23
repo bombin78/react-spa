@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './app';
 import { HomePage, HomeRoutes } from './pages/home/index';
 import { ContactRoutes } from './pages/contact/index';
+import ErrorPage from './pages/error/index';
 
 
 //По умолчанию экспортируем JSX объект Route у которого будет
@@ -19,8 +20,13 @@ export default  (
 		{/*
 		 	Конструкция для того, чтобы каждый роутер лежал отдельно
 		 	и чтобы их легко было достать
-		 */}
+		*/}
 		{ HomeRoutes }
 		{ ContactRoutes }
+		{/*
+			На этот Route будут пеереходить все страницы, которые не имееют
+		 	собственных Routes
+		*/}
+		<Route path='*' component={ ErrorPage } />
 	</Route>
 );

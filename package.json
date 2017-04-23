@@ -1,7 +1,7 @@
 {
   "name": "react-project",
   "version": "1.0.0",
-  "description": "study",
+  "description": "sample for single-page applications",
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server --progress --inline --hot",

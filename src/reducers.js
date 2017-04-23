@@ -1,6 +1,3 @@
-/**
- * Created by acer on 16.04.2017.
- */
 //Импортируем метод combineReducers из redux, который
 //позволяет объеденять много reducer-ов в один
 import { combineReducers } from 'redux';

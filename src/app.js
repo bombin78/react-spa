@@ -1,25 +1,33 @@
-/**
- * Created by acer on 16.04.2017.
- */
-
 //Импортируем(подключаем) React
-import React from 'react';
+import React, { PropTypes } from 'react';
+//Импортируем(подключаем) компоненты
+import { Header } from './components/index';
+//Импортируем(подключаем) вспомогательные файлы:
+//инструменты разработчика и т.д.???
 import { DevTools } from './utils/index';
 
 //Экспортируем по умолчанию компонент App,
 //который будет наследоватся от компонета React
 export default class App extends React.Component {
 
+	//Статическое поле отвечающее за валидацию
+	static propTypes = {
+		children: PropTypes.any.isRequired
+	};
 	//Статическое поле в котором хранится routе нашего
-	//компонента или страницы. У компонета App routе
-	//будет инедксный
+	//компонента.
 	static path = '/';
 
-	//Метод render который будет возвращать <h1>Hello world!</h1>
+	//Метод render который будет возвращать содержимое
 	render() {
 		return (
 			<div>
-				<h1>Hello world!</h1>
+				<Header />
+				{/*
+					Вывод содержимого создаваемых страниц. Передача
+				 	содержимого осуществляется с помощью файла routes.js
+				 */}
+				{ this.props.children }
 				{ process.env.NODE_ENV !== 'production' ? <DevTools /> : null }
 			</div>
 		);

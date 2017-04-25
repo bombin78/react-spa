@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import Input from '../../components/ui/input/index';
 import { bindAll } from 'lodash';
+//Импортируем функцию connect из библиотеки react-redux
+//для соединения компонента со store
+import { connect } from 'react-redux';
+import { addTodo } from './actions';
 import './styles.less';
 
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
 
 	static path = '/';
+	static propTypes = {
+		home: PropTypes.object.isRequired,
+		dispatch: PropTypes.func.isRequired
+	};
 
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todoName: '',
-			todos: [
-				{
-					id: 1,
-					name: 'Todo 1'
-				}
-			],
-			error: ''
+			todoName: ''
 		};
 
 		bindAll(this, ['renderTodos', 'inputOnChange', 'addTodo']);
@@ -30,19 +31,11 @@ export default class HomePage extends React.Component {
 	}
 
 	addTodo() {
-		if(this.state.todoName == '') {
-			this.setState({ error: 'Поле не должно быть пустым' });
-			return;
-		}
-
-		const id = this.state.todos[this.state.todos.length - 1].id + 1;
+		const { todos } = this.props.home;
+		const id = todos[todos.length - 1].id + 1;
 		const name = this.state.todoName;
-
-		const todos = this.state.todos;
-		todos.push({id, name});
-
-		this.setState({todos});
-		this.setState({todoName: '', error: '' });
+		this.props.dispatch( addTodo(id, name) );
+		this.setState({ todoName: '' });
 	}
 
 	renderTodos(item, idx) {
@@ -52,7 +45,8 @@ export default class HomePage extends React.Component {
 	}
 
 	render() {
-		const {todoName, todos, error} = this.state;
+		const { todoName } = this.state;
+		const { todos, error } = this.props.home;
 		return (
 			<div className='row-fluid b-home'>
 				<div className='col-xs-12'>
@@ -73,3 +67,15 @@ export default class HomePage extends React.Component {
 	}
 
 }
+
+//Стандартная функция, которая нужна для метода connect,
+//возваращает то поле, на которое нужно подписаться в state.
+//В данном случае - home так как это название страницы.
+function mapStateToProps(state) {
+	return {
+		home: state.home
+	};
+}
+
+//Соединяем HomePage со store
+export default connect(mapStateToProps)(HomePage);

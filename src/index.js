@@ -29,6 +29,6 @@ ReactDom.render((
 			{ routes }
 		</Router>
 	</Provider>
-),
-document.querySelector('#app'));
-
+	),
+	document.querySelector('#app')
+);

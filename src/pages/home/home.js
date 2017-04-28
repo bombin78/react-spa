@@ -4,7 +4,8 @@ import { bindAll } from 'lodash';
 //Импортируем функцию connect из библиотеки react-redux
 //для соединения компонента со store
 import { connect } from 'react-redux';
-import { addTodo } from './actions';
+import { addTodo, likeTodo, deleteTodo } from './actions';
+import classnames from 'classnames';
 import './styles.less';
 
 
@@ -39,9 +40,27 @@ class HomePage extends React.Component {
 	}
 
 	renderTodos(item, idx) {
+		const todoClasses = classnames('b-home-todo', {
+			'is-liked': item.liked
+		});
+		const btnClasses = classnames('btn', {
+			'active': item.liked
+		});
 		return (
-			<li key={ idx }>{ item.name }</li>
+			<li key={ idx }>
+				<span className={ todoClasses }>{ item.name }</span>
+				<button className='btn' onClick={ this.deleteTodo.bind(this, item) }><i className='glyphicon glyphicon-remove' /></button>
+				<button className={ btnClasses } onClick={ this.likeTodo.bind(this, item) }><i className='glyphicon glyphicon-heart' /></button>
+			</li>
 		);
+	}
+
+	deleteTodo(todo){
+		this.props.dispatch( deleteTodo(todo) );
+	}
+
+	likeTodo(todo){
+		this.props.dispatch( likeTodo(todo) );
 	}
 
 	render() {
@@ -59,7 +78,7 @@ class HomePage extends React.Component {
 							value={ todoName }
 							error={ error }
 						/>
-						<button className='btn btn-primary' onClick={ this.addTodo }>Add todo</button>
+						<button className='btn btn-primary b-home-submit' onClick={ this.addTodo }>Add todo</button>
 					</div>
 				</div>
 			</div>

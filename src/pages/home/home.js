@@ -1,11 +1,19 @@
 import React, { PropTypes } from 'react';
-import Input from '../../components/ui/input/index';
 import { bindAll } from 'lodash';
 //Импортируем функцию connect из библиотеки react-redux
 //для соединения компонента со store
 import { connect } from 'react-redux';
-import { addTodo, likeTodo, deleteTodo } from './actions';
+import {
+	addTodo,
+	likeTodo,
+	deleteTodo,
+	getTodos
+} from './actions';
+import Input from '../../components/ui/input/index';
+import Loader from '../../components/ui/loader/index';
+import Empty from '../../components/ui/empty/index';
 import classnames from 'classnames';
+import { LS } from '../../utils/index'
 import './styles.less';
 
 
@@ -25,6 +33,8 @@ class HomePage extends React.Component {
 		};
 
 		bindAll(this, ['renderTodos', 'inputOnChange', 'addTodo']);
+
+		this.props.dispatch( getTodos() );
 	}
 
 	inputOnChange(value) {
@@ -32,10 +42,7 @@ class HomePage extends React.Component {
 	}
 
 	addTodo() {
-		const { todos } = this.props.home;
-		const id = todos[todos.length - 1].id + 1;
-		const name = this.state.todoName;
-		this.props.dispatch( addTodo(id, name) );
+		this.props.dispatch( addTodo(this.props.home.todos, this.state.todoName) );
 		this.setState({ todoName: '' });
 	}
 
@@ -65,13 +72,18 @@ class HomePage extends React.Component {
 
 	render() {
 		const { todoName } = this.state;
-		const { todos, error } = this.props.home;
+		const { todos, error, isLoading } = this.props.home;
+		LS.set('todos', todos);
 		return (
 			<div className='row-fluid b-home'>
 				<div className='col-xs-12'>
-					<ul>
-						{ todos.map(this.renderTodos) }
-					</ul>
+					{
+						isLoading
+							? <Loader/>
+							: todos.length !== 0
+								? <ul>{ todos.map(this.renderTodos) }</ul>
+								: <Empty/>
+					}
 					<div className='col-xs-4'>
 						<Input
 							onChange={ this.inputOnChange }
@@ -84,7 +96,6 @@ class HomePage extends React.Component {
 			</div>
 		);
 	}
-
 }
 
 //Стандартная функция, которая нужна для метода connect,

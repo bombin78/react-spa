@@ -19,7 +19,7 @@ export default class ListPage extends React.Component {
 		bindAll(this, ['renderItems']);
 	}
 
-	renderItems(items, idx) {
+	renderItems(item, idx) {
 		return <ListItem
 			key={ idx }
 			id={ item }

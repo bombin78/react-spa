@@ -21,7 +21,7 @@ export default class App extends React.Component {
 	//Метод render который будет возвращать содержимое
 	render() {
 		return (
-			<div>
+			<div className='container-fluid'>
 				<Header />
 				{/*
 					Вывод содержимого создаваемых страниц. Передача

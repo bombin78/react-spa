@@ -15,7 +15,7 @@ import routes from './routes';
 
 
 //Создаем объект store
-const  store = configureStore();
+export const  store = configureStore();
 //Создаем объект, который судя по названию синхронизирует store с
 //историей и позволяет нам потом находить все по навигации
 const  history = syncHistoryWithStore(browserHistory, store);

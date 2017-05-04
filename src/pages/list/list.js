@@ -1,44 +1,19 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { bindAll } from 'lodash';
+import { connect } from 'react-redux';
 import ListItem from './list-item';
 
 
-export default class ListPage extends React.Component {
+class ListPage extends React.Component {
 
 	static path = '/list';
+	static propTypes = {
+		list: PropTypes.object.isRequired,
+		dispatch: PropTypes.func.isRequired
+	};
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			items: [
-				{
-					id: 1,
-					name: 'Rihanna - Diamonds',
-					youtube: 'lWA2pjMjpBs'
-				},
-				{
-					id: 2,
-					name: 'Eminem - Love The Way You Lie ft. Rihanna',
-					youtube: 'uelHwf8o7_U'
-				},
-				{
-					id: 3,
-					name: 'Eminem - Not Afraid',
-					youtube: 'j5-yKhDd64s'
-				},
-				{
-					id: 4,
-					name: 'Red Hot Chili Peppers - Californication',
-					youtube: 'YlUKcNNmywk'
-				},
-				{
-					id: 5,
-					name: 'Metallica - Nothing Else Matters',
-					youtube: 'Tj75Arhq5ho'
-				}
-			]
-		};
 
 		bindAll(this, ['renderItems']);
 	}
@@ -52,6 +27,7 @@ export default class ListPage extends React.Component {
 	}
 
 	render() {
+		const { items } = this.props.list;
 		return (
 			<div className='row'>
 				<div className='col-xs-12'>
@@ -65,12 +41,19 @@ export default class ListPage extends React.Component {
 							</tr>
 						</thead>
 						<tbody>
-							{ this.state.items.map(this.renderItems) }
+							{ items.map(this.renderItems) }
 						</tbody>
 					</table>
 				</div>
 			</div>
 		);
 	};
-
 }
+
+function mapStateToProps(state) {
+	return {
+		list: state.list
+	};
+}
+
+export default connect(mapStateToProps)(ListPage);

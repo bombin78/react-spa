@@ -3,8 +3,9 @@
 import { combineReducers } from 'redux';
 //Импортируем стандартный reducer, отвечающий за роутинг
 import { routerReducer } from 'react-router-redux';
-//Импортириуем HomeReducer
+
 import { HomeReducer } from './pages/home/index';
+import { ListReducer } from './pages/list/index';
 
 
 //Экспортируем метод combineReducers в который передаем
@@ -12,5 +13,6 @@ import { HomeReducer } from './pages/home/index';
 //reducer-ов
 export default combineReducers({
 	routing: routerReducer,
-	...HomeReducer
+	...HomeReducer,
+	...ListReducer
 });

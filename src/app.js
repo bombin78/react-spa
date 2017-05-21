@@ -32,7 +32,7 @@ export default class App extends React.Component {
 				 	содержимого осуществляется с помощью файла routes.js
 				 */}
 				{ this.props.children }
-				{ process.env.NODE_ENV !== 'production' ? <DevTools /> : null }
+				{ NODE_ENV !== 'production' ? <DevTools /> : null }
 			</div>
 		);
 	};

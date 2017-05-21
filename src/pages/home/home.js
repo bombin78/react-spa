@@ -80,7 +80,7 @@ class HomePage extends React.Component {
 					{
 						isLoading
 							? <Loader/>
-							: todos.length !== 0
+							: todos.length
 								? <ul>{ todos.map(this.renderTodos) }</ul>
 								: <Empty/>
 					}

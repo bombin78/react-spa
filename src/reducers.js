@@ -1,11 +1,12 @@
 //Импортируем метод combineReducers из redux, который
-//позволяет объеденять много reducer-ов в один
+//позволяет объеденять несеколько reducer-ов в один
 import { combineReducers } from 'redux';
 //Импортируем стандартный reducer, отвечающий за роутинг
 import { routerReducer } from 'react-router-redux';
 
 import { HomeReducer } from './pages/home/index';
 import { ListReducer } from './pages/list/index';
+import { ContactReducer } from './pages/contact/index';
 
 import { ModalReducer } from './components/modal/index';
 
@@ -17,5 +18,6 @@ export default combineReducers({
 	routing: routerReducer,
 	...HomeReducer,
 	...ListReducer,
+	...ContactReducer,
 	...ModalReducer
 });

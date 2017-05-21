@@ -3,6 +3,7 @@ import React, { PropTypes } from 'react';
 //Импортируем(подключаем) компоненты
 import { Header } from './components/index';
 import { Modal } from './components/modal/index';
+import { TopAlert } from './components/top-alert/index';
 //Импортируем(подключаем) вспомогательные файлы:
 //инструменты разработчика и т.д.???
 import { DevTools } from './utils/index';
@@ -23,6 +24,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<div className='container-fluid'>
+				<TopAlert />
 				<Modal />
 				<Header />
 				{/*

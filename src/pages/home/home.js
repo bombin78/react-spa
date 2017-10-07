@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { bindAll } from 'lodash';
-//Импортируем функцию connect из библиотеки react-redux
-//для соединения компонента со store
+// Импортируем функцию connect из библиотеки react-redux
+// для соединения компонента со store
 import { connect } from 'react-redux';
 import {
 	addTodo,
@@ -98,14 +98,14 @@ class HomePage extends React.Component {
 	}
 }
 
-//Стандартная функция, которая нужна для метода connect,
-//возваращает то поле, на которое нужно подписаться в state.
-//В данном случае - home так как это название страницы.
+// Стандартная функция, которая нужна для метода connect,
+// возваращает то поле, на которое нужно подписаться в state.
+// В данном случае - home так как это название страницы.
 function mapStateToProps(state) {
 	return {
 		home: state.home
 	};
 }
 
-//Соединяем HomePage со store
+// Соединяем HomePage со store
 export default connect(mapStateToProps)(HomePage);

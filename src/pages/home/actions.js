@@ -1,13 +1,13 @@
 import { LS, delay } from '../../utils/index';
 
-//Константы
+// Константы
 export const ADD_TODO = 'ADD_TODO';
 export const LIKE_TODO = 'LIKE_TODO';
 export const DELETE_TODO = 'DELETE_TODO';
 export const GET_TODOS = 'GET_TODOS';
 
 
-//Функции action creator
+// Функции action creator
 export function addTodo(todos, name) {
 	let error = '';
 	if (!name) {

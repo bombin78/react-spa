@@ -1,5 +1,5 @@
 import React from 'react';
-//Импортируем отдельный Route и компонент для обработки ощибок
+// Импортируем отдельный Route и компонент для обработки ощибок
 import { Route, IndexRoute } from 'react-router';
 import App from './app';
 import { HomePage, HomeRoutes } from './pages/home/index';
@@ -8,8 +8,8 @@ import { ListRoutes } from './pages/list/index';
 import ErrorPage from './pages/error/index';
 
 
-//По умолчанию экспортируем JSX объект Route у которого будет
-//компонент App и путь path
+// По умолчанию экспортируем JSX объект Route у которого будет
+// компонент App и путь path
 export default  (
 	<Route component={ App } path={ App.path } >
 		{/*

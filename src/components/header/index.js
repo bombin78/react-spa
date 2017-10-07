@@ -1,5 +1,5 @@
 import React from 'react';
-//Импортируем link для реализации навигации
+// Импортируем link для реализации навигации
 import { Link } from 'react-router';
 
 
